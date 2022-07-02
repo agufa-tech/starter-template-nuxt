@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "nuxt-starter-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a Nuxt starter template with needed libraries, mainly for static sites, need a little modification for SSR",
   "repository": {
     "type": "git",
