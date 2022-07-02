@@ -8,7 +8,7 @@ Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
 ## Features
 
-* 💨 [@nuxtjs/tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework
+* 💨 [windicss](https://windicss.org/integrations/nuxt.html) - Next-generation utility-first CSS framework
 * 🤹 [unplugin-icons](https://github.com/antfu/unplugin-icons) - Use icons from any iconsets  
   🤹 [@iconify/json](https://icones.js.org/) - Multiple Iconsets  
   🤹 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) - On-demand components auto importing for Vue
@@ -27,9 +27,9 @@ Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
 ## ToDo
 
-* unplugin-icons auto-import: awaiting [this feature to be released](https://github.com/antfu/unplugin-icons/pull/63)
-* PWA: waiting for official stable release
-* i18n: waiting for nuxt3 integration [official i18n nuxt module](https://github.com/nuxt-community/i18n-module)
+- [ ] unplugin-icons auto-import: awaiting [this feature to be released](https://github.com/antfu/unplugin-icons/pull/63)
+- [ ] PWA: waiting for official stable release
+- [ ] i18n: waiting for nuxt3 integration [official i18n nuxt module](https://github.com/nuxt-community/i18n-module)
 
 ## Setup
 
@@ -70,6 +70,45 @@ pnpm dev
 ## Production
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+
+## Prettier+eslint+typescript support
+1. [yarn add | npm install | pnpm add] -D @nuxtjs/eslint-config-typescript eslint eslint-plugin-nuxt eslint-config-prettier eslint-plugin-prettier prettier typescript
+2. In root, create file ".eslintrc.js":
+```
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "plugin:prettier/recommended",
+  ],
+  rules: {
+    "@typescript-eslint/no-unused-vars": "off",
+  },
+};
+```
+3. In root, create file ".eslintignore":
+```
+node_modules
+.nuxt
+.output
+.git
+components.d.ts
+```
+4. In package.json, add commands:
+```
+"scripts": {
+  ...
+  "lint": "eslint --ext .js,.ts,.vue --ignore-path .eslintignore .",
+  "lintfix": "eslint --fix --ext .js,.ts,.vue --ignore-path .eslintignore ."
+}
+```
+5. In your favorite IDE, eg. vscode, install or enable prettier+eslint extension
 
 ## Other Resource
 * 😃 [Emojis](https://emojipedia.org/) - Emoji list
